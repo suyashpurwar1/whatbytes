@@ -7,8 +7,7 @@ It is simple dashboard.
 
 ### **Live Application**  
 [WhatBytes Live Demo](https://whatbytes-lime.vercel.app/)
-![image](https://github.com/user-attachments/assets/562bd263-d299-437a-aa74-c5ac57e55d86)
-
+![image](https://github.com/user-attachments/assets/7ff30aa3-d061-4890-94d9-e775bd844505)
 ---
 
 ## **Prerequisites**  
