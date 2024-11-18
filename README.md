@@ -6,7 +6,7 @@ It is simple dashboard.
 [GitHub Repository](https://github.com/suyashpurwar1/whatbytes)
 
 ### **Live Application**  
-[WhatBytes Live Demo](https://whatbytes-4b74yx1b5-suyash-s-projects-e1760ee7.vercel.app/)
+[WhatBytes Live Demo](https://whatbytes-lime.vercel.app/)
 ![image](https://github.com/user-attachments/assets/562bd263-d299-437a-aa74-c5ac57e55d86)
 
 ---
