@@ -20,7 +20,6 @@ const Modal = ({
   });
 
   useEffect(() => {
-    // Update temp values when modal opens
     if (isOpen) {
       setTempValues({
         rank: rank,
@@ -33,22 +32,40 @@ const Modal = ({
   if (!isOpen) return null;
 
   const validateField = (name, value) => {
+    const numValue = Number(value);
+
     switch (name) {
       case "rank":
-        if (!value || value === "") {
-          return `${name} is required | Must be greater than 0`;
+        if (!value || value === "" || isNaN(numValue) || numValue <= 0) {
+          return "required | number greater than 0";
         }
+        break;
       case "percentile":
-        if (!value || value === "") {
-          return `${name} is required | Must be between 0-100`;
+        if (
+          !value ||
+          value === "" ||
+          isNaN(numValue) ||
+          numValue < 0 ||
+          numValue > 100
+        ) {
+          return " required | percentile 0-100";
         }
+        break;
       case "score":
-        if (!value || value === "") {
-          return `${name} is required | Must be between 0-15`;
+        if (
+          !value ||
+          value === "" ||
+          isNaN(numValue) ||
+          numValue < 0 ||
+          numValue > 15
+        ) {
+          return "required | between 0-15";
         }
+        break;
       default:
         return "";
     }
+    return ""; 
   };
 
   const handleInputChange = (field, value, setter) => {
@@ -65,7 +82,6 @@ const Modal = ({
   };
 
   const handleClose = () => {
-    // Restore original values
     setRank(rank);
     setPercentile(percentile);
     setCorrectAnswers(correctAnswers);
@@ -90,9 +106,11 @@ const Modal = ({
     }
   };
 
-  const inputClasses = `w-32 p-2 border rounded-lg text-sm ${
-    errors ? "border-red-500" : "border-blue-200"
-  }`;
+  const getInputClasses = (fieldName) => {
+    return `w-32 p-2 border rounded-lg text-sm ${
+      errors[fieldName] ? "border-red-500" : "border-blue-200"
+    }`;
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50">
@@ -131,7 +149,7 @@ const Modal = ({
                 onChange={(e) =>
                   handleInputChange("rank", e.target.value, setRank)
                 }
-                className={inputClasses}
+                className={getInputClasses("rank")}
               />
               {errors.rank && (
                 <p className="text-red-500 text-xs mt-1">{errors.rank}</p>
@@ -154,7 +172,7 @@ const Modal = ({
                 onChange={(e) =>
                   handleInputChange("percentile", e.target.value, setPercentile)
                 }
-                className={inputClasses}
+                className={getInputClasses("percentile")}
               />
               {errors.percentile && (
                 <p className="text-red-500 text-xs mt-1">{errors.percentile}</p>
@@ -177,7 +195,7 @@ const Modal = ({
                 onChange={(e) =>
                   handleInputChange("score", e.target.value, setCorrectAnswers)
                 }
-                className={inputClasses}
+                className={getInputClasses("score")}
               />
               {errors.score && (
                 <p className="text-red-500 text-xs mt-1">{errors.score}</p>
@@ -186,7 +204,6 @@ const Modal = ({
           </div>
         </div>
 
-        {/* Buttons */}
         <div className="flex justify-end items-center gap-4 mt-6">
           <button
             onClick={handleClose}
