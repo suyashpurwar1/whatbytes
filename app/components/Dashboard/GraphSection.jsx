@@ -7,6 +7,7 @@ import {
   Tooltip,
   CartesianGrid,
   ReferenceLine,
+  ResponsiveContainer,
 } from "recharts";
 import { TrendingUp } from "lucide-react";
 
@@ -60,47 +61,46 @@ const ComparisonGraph = ({ percentile }) => {
           <TrendingUp className="w-5.5 h-5.5 text-blue-500" />
         </div>
       </div>
-
-      <div className="mt-5">
-        <LineChart
-          width={550}
-          height={275}
-          data={data}
-          margin={{ top: 18, right: 25, left: 18, bottom: 18 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-          <XAxis
-            dataKey="percentile"
-            type="number"
-            domain={[0, 100]}
-            tickCount={5}
-            stroke="#555"
-            fontSize={11} // Increased slightly from the reduced version
-          />
-          <YAxis stroke="#555" hide />
-          <Tooltip content={<CustomTooltip />} />
-          <ReferenceLine
-            x={percentile}
-            stroke="#555"
-            strokeDasharray="3 3"
-            label={{
-              value: "your percentile",
-              position: "top",
-              fill: "#555",
-              fontSize: 11, // Slightly larger label font size
-            }}
-          />
-          <Line
-            type="monotone"
-            dataKey="count"
-            stroke="#4F46E5"
-            strokeWidth={1.75} // Increased slightly from reduced version
-            dot={{ r: 3, fill: "#4F46E5" }} // Slightly larger dots
-            activeDot={{ r: 5, fill: "#4F46E5" }} // Slightly larger active dots
-            animationDuration={900}
-            connectNulls
-          />
-        </LineChart>
+      <div className="mt-5 w-full h-[300px]">
+        <ResponsiveContainer>
+          <LineChart
+            data={data}
+            margin={{ top: 18, right: 25, left: 18, bottom: 18 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+            <XAxis
+              dataKey="percentile"
+              type="number"
+              domain={[0, 100]}
+              tickCount={5}
+              stroke="#555"
+              fontSize={11}
+            />
+            <YAxis stroke="#555" hide />
+            <Tooltip content={<CustomTooltip />} />
+            <ReferenceLine
+              x={percentile}
+              stroke="#555"
+              strokeDasharray="3 3"
+              label={{
+                value: "your percentile",
+                position: "top",
+                fill: "#555",
+                fontSize: 11,
+              }}
+            />
+            <Line
+              type="monotone"
+              dataKey="count"
+              stroke="#4F46E5"
+              strokeWidth={1.75}
+              dot={{ r: 3, fill: "#4F46E5" }}
+              activeDot={{ r: 5, fill: "#4F46E5" }}
+              animationDuration={900}
+              connectNulls
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
