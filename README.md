@@ -1,6 +1,6 @@
 
 ## **Project Overview**  
-It is simple dashboard.
+It is simple dashboard with graph and pie chat to analyse student performance.
 
 ### **Repository Link**  
 [GitHub Repository](https://github.com/suyashpurwar1/whatbytes)
