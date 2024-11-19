@@ -9,7 +9,7 @@ const Layout = ({ children }) => (
     </header>
     <div className="flex flex-1 pt-16">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r">
+      <aside className="w-16 md:w-64 bg-white border-r">
         <Sidebar />
       </aside>
 
